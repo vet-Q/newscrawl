@@ -1,0 +1,13 @@
+doctype
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title good
+        body 
+            table(class='newstitle')
+                tr 
+                    each item in diseaseInfo
+                        td #{item.title}
+                        td #{item.link}
+                        td #{item.pubdate}
+                        td #{item.category}

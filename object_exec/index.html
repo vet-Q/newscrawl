@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>express</title>
+
+</head>
+<body>
+    <h1>Hello World Static File</h1>
+    <!-- <form method="get" action="/drink"> -->
+    <button id="get-all">데이터 모두 가져오기</button>
+    <!-- </form> -->
+    <button id="post-all">데이터 추가하기</button>
+    <button id="get-one">0번 데이터 가져오기</button>
+    <button id="put-one">0번 데이터 수정하기</button>
+    <button id="delete-one">0번 데이터 제거하기</button>
+    <textarea name="" id="output" cols="40" rows="10"></textarea>
+    <style>
+        button {
+            color:blue;
+            /* flex-direction:justify-contents; */
+        }
+    </style>
+    <script>
+        let x = document.querySelector('#get-all')
+        let output = document.querySelector('#output')
+
+
+        const dataset = async function() {
+            const opts = {
+            method:'GET',
+            headers:{}
+            };
+
+            let response = await fetch('/drink',opts);
+            data = await response.json();
+            return data
+        };
+
+
+        x.onclick = async function (){
+           let data = await dataset();
+           output.value = data.map(val=>val.name);
+           output.style.backgroundColor = '#ccc';
+        };
+
+
+        document.querySelector("#post-all").click(async function () {
+                const opts = {
+                    method:'POST',
+                    dataType:'text',
+                };
+                let response = await fetch('/drink',opts);
+                console.log(response)
+        });
+        // })
+        // $("#get-one").click(function () {
+        //     $.ajax({
+        //         url: "/drink/0",
+        //         method: "GET",
+        //         dataType: "text",
+        //         success: function (data) {
+        //             $('#output').val(data)
+        //             console.log(data)
+        //         }
+        //     })
+        // })
+        // $("#put-one").click(function () {
+        //     $.ajax({
+        //         url: "/drink/0",
+        //         method: "PUT",
+        //         dataType: "text",
+        //         success: function (data) {
+        //             $('#output').val(data)
+        //             console.log(data)
+        //         }
+        //     })
+        // })
+        // $("#delete-one").click(function () {
+        //     $.ajax({
+        //         url: "/drink/0",
+        //         method: "DELETE",
+        //         dataType: "text",
+        //         success: function (data) {
+        //             $('#output').val(data)
+        //             console.log(data)
+        //         }
+        //     })
+        // })
+    </script>
+</body>
+</html>

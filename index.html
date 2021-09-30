@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Crawler</title>
+    <script src = 'FE.js', type='module'></script>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+        <button id = 'crawler'>크롤러 실행</button>
+
+        <form action='/data' method='POST'>
+            <fieldset>
+                <legend>데이터 입력</legend>
+                질병명 : <input type="text" name="diseaseInfo"/>
+                <input type="submit" value="검색">
+            </fieldset>
+        </form>
+
+        <table id='data'>
+
+        </table>
+</body>
+</html>
