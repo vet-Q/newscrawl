@@ -53,7 +53,7 @@ class GetDATA():
                     link = 'navigableString입니다'
                 else:
                     link = event.contents[2].text
-            except: link = str(event.contents[2])
+            except: link = str
 
             pubdate = event.contents[5].text
 
@@ -80,12 +80,3 @@ class GetDATA():
         print(self.result)
 
         return self.result
-
-
-
-
-if __name__== "__main__":
-    Crawler = GetDATA()
-    opt = Crawler.parse_opt()
-    print(opt)
-    Crawler.getHtml('african swine fever',opt)
