@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import requests, json
+=======
+import requests
+>>>>>>> 8d43504688ae8aeab7aa194630f007cdffa977c9
 from bs4 import BeautifulSoup
 import pandas as pd
 import argparse
@@ -14,8 +18,13 @@ class GetDATA():
     def parse_opt(self):
         parser = argparse.ArgumentParser()
         parser.add_argument("--mysql_host", type=str, default="127.0.0.1", help="MySQL host ip")
+<<<<<<< HEAD
         parser.add_argument("--mysql_user", type=str, default="root", help="MySQL user name")
         parser.add_argument("--mysql_password", type=str, default="DJPY!", help="MySQL password")
+=======
+        parser.add_argument("--mysql_user", type=str, help="MySQL user name")
+        parser.add_argument("--mysql_password", type=str, help="MySQL password")
+>>>>>>> 8d43504688ae8aeab7aa194630f007cdffa977c9
         parser.add_argument("--mysql_database", type=str, help="database name")
         parser.add_argument("--mysql_table", type=str, help="table name")
         opt = parser.parse_args()
@@ -53,7 +62,11 @@ class GetDATA():
                     link = 'navigableString입니다'
                 else:
                     link = event.contents[2].text
+<<<<<<< HEAD
             except: link = str('링크에 문제가 있습니다')
+=======
+            except: link = str
+>>>>>>> 8d43504688ae8aeab7aa194630f007cdffa977c9
 
             pubdate = event.contents[5].text
 
@@ -79,9 +92,13 @@ class GetDATA():
 
         print(self.result)
 
+<<<<<<< HEAD
         return 'hello world'
 
 if __name__== "__main__":
     Crawler = GetDATA()
     opt = Crawler.parse_opt()
     Crawler.getHtml('african swine fever',opt)
+=======
+        return self.result
+>>>>>>> 8d43504688ae8aeab7aa194630f007cdffa977c9
