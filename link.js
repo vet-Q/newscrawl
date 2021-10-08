@@ -7,20 +7,18 @@ const app = express();
 
 app.use(express.static('./'));
 // app.set('views', path.join(__dirname, 'views'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
 app.get('/data', (req, res) => {
     // 스크래핑 작업 수행
-    let dataTosend;
     const python = spawn('python',['main.py']);
     python.stdout.on('data', (data)=>{
-        console.log(data.toString());
-        res.send('hello')
+        let datas = data.toString();
+        res.send(datas);
     })
-    python.on('close',(code)=>{
-        console.log('작업완료');
-    })
+    // python.on('close',(code)=>{
+    //     console.log('end');
+    // })
    
 })
 

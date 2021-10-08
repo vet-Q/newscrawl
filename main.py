@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import requests, json
-=======
 import requests
->>>>>>> 8d43504688ae8aeab7aa194630f007cdffa977c9
 from bs4 import BeautifulSoup
 import pandas as pd
 import argparse
@@ -18,13 +14,8 @@ class GetDATA():
     def parse_opt(self):
         parser = argparse.ArgumentParser()
         parser.add_argument("--mysql_host", type=str, default="127.0.0.1", help="MySQL host ip")
-<<<<<<< HEAD
         parser.add_argument("--mysql_user", type=str, default="root", help="MySQL user name")
         parser.add_argument("--mysql_password", type=str, default="DJPY!", help="MySQL password")
-=======
-        parser.add_argument("--mysql_user", type=str, help="MySQL user name")
-        parser.add_argument("--mysql_password", type=str, help="MySQL password")
->>>>>>> 8d43504688ae8aeab7aa194630f007cdffa977c9
         parser.add_argument("--mysql_database", type=str, help="database name")
         parser.add_argument("--mysql_table", type=str, help="table name")
         opt = parser.parse_args()
@@ -50,7 +41,7 @@ class GetDATA():
 
     def getHtml(self, disease, opt):
         self.disease = disease
-        self.url = f'https://medisys.newsbrief.eu/rss/?type=search&mode=advanced&atLeast={self.disease}'
+        self.url = f'https://medisys.newsbrief.eu/rss/?type=search&mode=advanced&atLeast={self.disease}&language=en'
         res = requests.get(self.url)
         soup = BeautifulSoup(res.text, 'lxml')
         datas = soup.findAll('item')
@@ -59,14 +50,10 @@ class GetDATA():
             try:
                 link = event.contents[2].text
                 if isinstance(link, NavigableString):
-                    link = 'navigableString입니다'
+                    link = 'navigableString'
                 else:
                     link = event.contents[2].text
-<<<<<<< HEAD
-            except: link = str('링크에 문제가 있습니다')
-=======
-            except: link = str
->>>>>>> 8d43504688ae8aeab7aa194630f007cdffa977c9
+            except: link = str('Error in link')
 
             pubdate = event.contents[5].text
 
@@ -90,15 +77,29 @@ class GetDATA():
 
         conn.close()
 
-        print(self.result)
+        self.result['title'] = self.result['title'].apply(lambda x:x if type(x)==str else self.decoder(x))
+        dictResult = self.result.to_json(orient='records')
+        print(dictResult)
+        return self.result
 
-<<<<<<< HEAD
-        return 'hello world'
+
+
+    def decoder(self,wantWord):
+        '''
+        unicode 변환문제가 발생하는 경우가 있어, 이를 해결하기 위해 decoder를 작성
+        '''
+        try:
+            transWord = wantWord.encode().decode('unicode-escape')
+        except:
+            transWord = wantWord
+
+
+        return transWord
+
+
+
 
 if __name__== "__main__":
     Crawler = GetDATA()
     opt = Crawler.parse_opt()
     Crawler.getHtml('african swine fever',opt)
-=======
-        return self.result
->>>>>>> 8d43504688ae8aeab7aa194630f007cdffa977c9

@@ -2,16 +2,16 @@ window.onload = function(){
 
     const btn = document.querySelector('#crawler');
     const wantprintdata = document.querySelector('#data');
-    const form = document.querySelector('.disease');
-    const p = document.querySelector('.textTable');
+    const div = document.querySelector('.textTable');
     
     const dataset = async function(howto='GET') {
         const opts = {
                 method:`${howto}`,
+                headers:{},
         }
         let rest = await fetch('/data',opts);
+        let data = await rest.json()
         console.log('nice')
-        let data = await rest.toString()
         return data
     };
     
@@ -38,8 +38,12 @@ window.onload = function(){
     }
     
     btn.addEventListener('click',async(e)=>{
+        console.log('hello world')
         const wantprint = await dataset();
-        console.log(wantprint)
+        await listMaker(wantprint)
+        const p = document.createElement('p');
+        p.innerText = '데이터 작성이 완료되었습니다'
+        setTimeout(()=>{div.appendChild(p)},3000)
         // console.log(wantprint)
         // let arr = wantprint['African swine fever'];
         // listMaker(arr);
@@ -54,6 +58,6 @@ window.onload = function(){
     //     // let disease = wantprint.keys[0];
     //     // let arr = wantprint[disease];
     
-    };
+};
     
     
