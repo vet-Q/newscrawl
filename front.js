@@ -3,6 +3,7 @@ window.onload = function(){
     const btn = document.querySelector('#crawler');
     const wantprintdata = document.querySelector('#data');
     const div = document.querySelector('.textTable');
+    const notice = document.querySelector('.notice');
     
     const dataset = async function(howto='GET') {
         const opts = {
@@ -38,26 +39,17 @@ window.onload = function(){
     }
     
     btn.addEventListener('click',async(e)=>{
-        console.log('hello world')
+        const p1 = document.createElement('p');
+        p1.innerHTML = '<h1> 크롤링 중입니다. 잠시만 기다려주세요';
+        notice.appendChild(p1);
         const wantprint = await dataset();
+        notice.removeChild(p1);
         await listMaker(wantprint)
         const p = document.createElement('p');
-        p.innerText = '데이터 작성이 완료되었습니다'
-        setTimeout(()=>{div.appendChild(p)},3000)
-        // console.log(wantprint)
-        // let arr = wantprint['African swine fever'];
-        // listMaker(arr);
+        p.innerHTML = '<h1>데이터 작성이 완료되었습니다</h1>'
+        setTimeout(()=>{notice.appendChild(p)},2000)
+
     });
-    
-    // form.addEventListener('submit',async function(e){
-    //     e.preventDefault;
-    //     console.log(this)
-    
-    //     console.log('hello world')
-    //     // const wantprint = await dataset("POST");
-    //     // let disease = wantprint.keys[0];
-    //     // let arr = wantprint[disease];
-    
 };
     
     

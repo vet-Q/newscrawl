@@ -79,8 +79,10 @@ class GetDATA():
 
         self.result['title'] = self.result['title'].apply(lambda x:x if type(x)==str else self.decoder(x))
         dictResult = self.result.to_json(orient='records')
+
         print(dictResult)
-        return self.result
+
+        # return self.result
 
 
 
