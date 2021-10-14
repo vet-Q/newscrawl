@@ -23,9 +23,15 @@ class DBMaker {
         // let data = await JSON.stringify(rows,null,2);
         console.log(rows);
         return rows;
-    }   
+    }
+    
+    hello (){
+        console.log('hello');
+    }
 }
 
 let con = new DBMaker('127.0.0.1','3306','root','DJPY!','djpy')
 
-con.conn()
+module.exports = {
+    con
+};
