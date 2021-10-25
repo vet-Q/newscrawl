@@ -3,6 +3,7 @@ const {spawn} = require('child_process');
 const PORT = process.env.PORT || 5000
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const { nextTick } = require('process');
 
 const app = express();
 
@@ -50,16 +51,9 @@ app.get('/data', (req, res) => {
    
 })
 
-
-
-// connect.query('SELECT * from datas limit 10', function(err,result,fields){
-//     if(err){
-//         console.log(err);
-//     }
-//     console.log(result)
-// })
-
-// con.end()
+app.get('/insa',(req,res)=>{
+    res.send('<h1>hello world</h1>')
+})
 
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))

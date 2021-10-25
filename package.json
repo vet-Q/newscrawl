@@ -1,0 +1,11 @@
+{
+  "name": "kwon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "front.js",
+  "scripts": {
+    "start": "nodemon link.js",
+  "author": "",
+  "license": "ISC"
+}
+}

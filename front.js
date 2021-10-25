@@ -8,7 +8,6 @@ window.onload = function(){
     const dataset = async function(howto='GET') {
         const opts = {
                 method:`${howto}`,
-                headers:{},
         }
         let rest = await fetch('/data',opts);
         let data = await rest.json()
@@ -30,7 +29,7 @@ window.onload = function(){
             let numbertd = document.createElement('td');
             let titletd = document.createElement('td');
             numbertd.innerText = `${idx}`
-            titletd.innerHTML = `<a href=${link}>${title}</a>`
+            titletd.innerHTML = `<a href=${link}  target="_blank">${title}</a>`
             tr.appendChild(numbertd);
             tr.appendChild(titletd);
             wantprintdata.appendChild(tr)
