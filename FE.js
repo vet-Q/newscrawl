@@ -28,7 +28,7 @@ const listMaker = (arr) => {
         let numbertd = document.createElement('td');
         let titletd = document.createElement('td');
         numbertd.innerText = `${idx}`
-        titletd.innerHTML = `<a href=${link}>${title}</a>`
+        titletd.innerHTML = `<a href=${link} target="_blank">${title} </a>`
         tr.appendChild(numbertd);
         tr.appendChild(titletd);
         wantprintdata.appendChild(tr)

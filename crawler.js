@@ -3,7 +3,6 @@ const cheerio = require('cheerio');
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
-const { html } = require('cheerio/lib/api/manipulation');
 
 
 app = express();

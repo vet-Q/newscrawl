@@ -5,9 +5,6 @@ html(lang='en')
         title good
         body 
             table(class='newstitle')
-                tr 
-                    each item in diseaseInfo
+                each item in diseaseInfo
+                    tr 
                         td #{item.title}
-                        td #{item.link}
-                        td #{item.pubdate}
-                        td #{item.category}
